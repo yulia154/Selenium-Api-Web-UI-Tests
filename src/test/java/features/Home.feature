@@ -44,7 +44,7 @@ Feature: Home Page
     Then title 'Sony vaio i5' should be shown
 
   @WEB-UI
-  Scenario: User open home categories
+  Scenario: User open monitor categories
     Given user is on home page
     When user click 'monitor'
     Then title 'Apple monitor 24' should be shown

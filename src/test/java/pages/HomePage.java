@@ -55,7 +55,7 @@ public class HomePage {
                 driver.findElement(HomeElements.monitorCategori).click();
                 break;
             case "product":
-                Thread.sleep(1000);
+                Thread.sleep(2000);
                 driver.findElement(HomeElements.productLocation).click();
                 break;
             case "add to cart":
@@ -66,12 +66,12 @@ public class HomePage {
         }
    }
     public void validateTitle(String title) throws InterruptedException {
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         assertTrue(driver.getPageSource().contains(title));
     }
 
     public void checkButton(String button) throws InterruptedException {
-        Thread.sleep(500);
+        Thread.sleep(1000);
         assertTrue(driver.findElement(HomeElements.addToCartButton).isDisplayed());
     }
     public void validateAlert(String message) throws InterruptedException {

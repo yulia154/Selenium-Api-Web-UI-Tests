@@ -29,4 +29,33 @@ dependencies {
 
 //test {
 //    useJUnitPlatform()
+//    systemProperty "cucumber.filter.tags", System.getProperty("cucumber.filter.tags")
 //}
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+def tags = (findProperty('tags') == null) ? 'not @exclude' : findProperty('tags') + ' and not @exclude'
+
+task cucumber() {
+    description("Running Cucumber Test")
+    dependsOn assemble, compileTestJava
+    doLast {
+        javaexec {
+            main = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = [
+
+                    '--plugin', 'html:reports/cucumber.html',
+                    '--plugin', 'json:reports/cucumber.json',
+                    '--plugin', 'pretty',
+                    '--glue', 'stepdefs',
+                    '--tags', "${tags}",
+                    'src/test/java/features'
+            ]
+        }
+    }
+}
