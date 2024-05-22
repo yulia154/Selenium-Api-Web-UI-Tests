@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  web-ui-tests:
+  api-web-ui-tests:
 
     runs-on: ubuntu-latest
    
@@ -26,22 +26,4 @@ jobs:
       run: chmod +x gradlew
       
     - name: Execute Test
-      run: ./gradlew cucumber -t @WEB-UI
-
-  API-tests:
-
-    runs-on: ubuntu-latest
-   
-    steps:
-    - uses: actions/checkout@v4
-    - name: Set up JDK 17
-      uses: actions/setup-java@v4
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-
-    - name: Setup gradlew
-      run: chmod +x gradlew
-      
-    - name: Execute Test
-      run: ./gradlew cucumber/ -t @API
+      run: ./gradlew cucumber
