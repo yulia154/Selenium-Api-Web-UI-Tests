@@ -59,14 +59,12 @@ jobs:
 
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v4.3.3
-      if : always()
       with:
-        name: cucumber report
+        name: Cucumber Report
         path: reports
 
     - name: GitHub Pages action
       uses: peaceiris/actions-gh-pages@v4.0.0
-      if : always()
       with:
         PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         PUBLISH_DIR: reports
