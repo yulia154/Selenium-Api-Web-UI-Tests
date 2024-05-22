@@ -27,3 +27,17 @@ jobs:
       
     - name: Execute Test
       run: ./gradlew cucumber
+
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v4.3.3
+      if : always()
+      with:
+        name: cucumber report
+        path: reports
+
+    - name: GitHub Pages action
+      uses: peaceiris/actions-gh-pages@v4.0.0
+      if : always()
+      with:
+        deploy_key: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: reports
